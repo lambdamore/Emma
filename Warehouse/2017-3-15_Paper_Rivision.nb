@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      8957,        254]
-NotebookOptionsPosition[      7327,        196]
-NotebookOutlinePosition[      8172,        226]
-CellTagsIndexPosition[      8095,        221]
+NotebookDataLength[     16335,        406]
+NotebookOptionsPosition[     14353,        336]
+NotebookOutlinePosition[     15199,        366]
+CellTagsIndexPosition[     15121,        361]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -170,12 +170,53 @@ Cell["Introduction", "Subchapter",
  CellChangeTimes->{{3.698525956313599*^9, 3.698525958265943*^9}}],
 
 Cell["\<\
-The current productivity of logistic industry, Its evolution in recent years.
-The importance of Case study in Beijing
-The data status
-Related work from others.\
+    Logistic is a fast growing industry in China. With the boost from \
+information revolution, the annual domestic logistic total assets have \
+reached 30 billion dollars since 2014(cite). The exponential development \
+depends on basic infrastructure construction, maintenance and intensive \
+cooperation between different professions. The huge system consisted of \
+fragile business chains poses great challenge on each of its link. On the \
+other hand, although transportation and storage information are more easily \
+available to potential clients, the market is becoming more elusive and fast \
+changing under its self-adjustment. Logistic asset holders who have little \
+understanding of market status quo might lose their advantage in the fierce \
+competition. Government can not make tax policy adjustment and infrastructure \
+update without real-time inspection of the business. A real-time updated \
+logistic dataset is in urgent need.
+    Among all the components of logistic chain, warehouse is of fundamental \
+importance  since it sets up the fulcrum for transportation and storage. \
+There are many agencies providing real time warehouse market information to \
+the public nowadays, such as general purpose classified websites and logistic \
+domain specific web agencies. The evolution of each specific warehouse status \
+compose a whole growing market. A real-time inspection of these data could \
+help form a more reasonable warehouse pricing system and provide decision \
+suggestions for the governors.  However, there is little work in this area \
+because of commercial conservation.
+    In this research, we select Beijing as a case study to demonstrate how to \
+reveal the real time status of warehouse status using open market web data. \
+The real-time updated warehouse information were downloaded, cleaned and \
+organized in dataset. Based on this, we analyze the warehouse quantity, price \
+and area distribution to support pricing and policy making. 
+   The rest of the paper is organized as follows, the data source was \
+introduced in the second section. After that, we illustrated the data \
+collection and clean process. The warehouse status was revealed based on \
+statistics of the dataset. Conclusions were drawn at last.
+    
+    \
 \>", "Text",
- CellChangeTimes->{{3.698525960358177*^9, 3.6985260100403433`*^9}}]
+ CellChangeTimes->{{3.6985381735076437`*^9, 3.6985381899480753`*^9}, {
+  3.698538236310305*^9, 3.698538256804285*^9}, {3.698538370357458*^9, 
+  3.698538415034992*^9}, {3.698538464010812*^9, 3.69853850488794*^9}, {
+  3.698538586050447*^9, 3.698538604033846*^9}, {3.698538634208043*^9, 
+  3.698538745573707*^9}, {3.698538800428829*^9, 3.698539193553135*^9}, {
+  3.698539258373928*^9, 3.698539413765376*^9}, {3.69853946502604*^9, 
+  3.698539524894436*^9}, {3.69853960856602*^9, 3.6985398997663918`*^9}, {
+  3.69853993273755*^9, 3.6985400705553493`*^9}, {3.698540100715827*^9, 
+  3.698540107051601*^9}, {3.698540138380382*^9, 3.6985401895322647`*^9}, {
+  3.6985402500439167`*^9, 3.698540417853681*^9}, {3.698540451021837*^9, 
+  3.6985404618733797`*^9}, {3.698540534590026*^9, 3.698540652027566*^9}, {
+  3.698540683837585*^9, 3.6985409564067717`*^9}, {3.6985410091685057`*^9, 
+  3.698541399342863*^9}}]
 }, Open  ]]
 }, Open  ]],
 
@@ -189,8 +230,107 @@ Cell[CellGroupData[{
 Cell["Data Collection", "Subchapter",
  CellChangeTimes->{{3.6985260769641123`*^9, 3.698526079938551*^9}}],
 
-Cell["", "Text",
- CellChangeTimes->{{3.69852608236804*^9, 3.6985260830424147`*^9}}]
+Cell[CellGroupData[{
+
+Cell["Data Source", "Subsection",
+ CellChangeTimes->{{3.698536286834301*^9, 3.698536290544794*^9}}],
+
+Cell["\<\
+Specific logistic warehouse transaction information is easily available from \
+different web agencies, which could be roughly divided into two categories, \
+the first being general purpose classified website, such as 58.com and \
+Ganji.com, the second being logistic domain specific website, such as \
+Warehouse Cloud(www.50yc.com) and China Warehouse Network(CWN). Warehouses \
+from different information sources vary in their quantity, quality and price. \
+Below we compared the warehouse information of Beijing from different aspects.\
+\>", "Text",
+ CellChangeTimes->{{3.698536292568657*^9, 3.6985362935445557`*^9}, {
+  3.698536342195414*^9, 3.698536627840598*^9}, {3.698536660590879*^9, 
+  3.6985367341993647`*^9}, {3.698537017074292*^9, 3.698537025696246*^9}, {
+  3.698537216837061*^9, 3.698537242788726*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"TableForm", "[", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Information Source\>\"", ",", "\"\<Open Warehouse Number\>\"", ",", 
+      "\"\<Update Frequency\>\"", ",", "\"\<Data Length\>\""}], "}"}], ",", 
+    "\n", "\t\t   ", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<Warehouse Cloud\>\"", ",", "\"\<144\>\"", ",", "\"\<1.2/day\>\"", 
+      ",", "\"\<Since 2016.9\>\""}], "}"}], ",", "\n", "\t\t   ", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<CWN\>\"", ",", "\"\<156\>\"", ",", "\"\<0.3/day\>\"", ",", 
+      "\"\<Since 2015.6\>\""}], "}"}], ",", "\n", "\t\t   ", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<58.com\>\"", ",", "\"\<6947\>\"", ",", "\"\<100/day\>\"", ",", 
+      "\"\<Replace old posts at real time\>\""}], "}"}]}], "}"}], 
+  "]"}]], "Code",
+ CellChangeTimes->{{3.698536737368456*^9, 3.6985367860104713`*^9}, {
+  3.6985368186646233`*^9, 3.698536993021454*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Information Source\"\>", "\<\"Open Warehouse Number\"\>", \
+"\<\"Update Frequency\"\>", "\<\"Data Length\"\>"},
+    {"\<\"Warehouse Cloud\"\>", "\<\"144\"\>", "\<\"1.2/day\"\>", "\<\"Since \
+2016.9\"\>"},
+    {"\<\"CWN\"\>", "\<\"156\"\>", "\<\"0.3/day\"\>", "\<\"Since \
+2015.6\"\>"},
+    {"\<\"58.com\"\>", "\<\"6947\"\>", "\<\"100/day\"\>", "\<\"Replace old \
+posts at real time\"\>"}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[2.0999999999999996`]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  Function[BoxForm`e$, 
+   TableForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.698536993490872*^9}]
+}, {2}]],
+
+Cell["\<\
+Although domain specific agencies like Warehouse Cloud and CWN provide high \
+quality and well classified warehouse information, we could see that their \
+warehouse storage and update frequency are relatively limited compared to the \
+more popular general purpose classified websites. As a demonstration, we \
+select the open market warehouse data from 58.com to build the database. \
+Other information sources could be added under the same framework.\
+\>", "Text",
+ CellChangeTimes->{{3.698537037195952*^9, 3.698537132328597*^9}, {
+  3.698537167386767*^9, 3.698537183272242*^9}, {3.698537285578842*^9, 
+  3.698537293794654*^9}, {3.698537526035529*^9, 3.698537626919014*^9}, {
+  3.6985379137120934`*^9, 3.6985379191176662`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Data Collection", "Subsection",
+ CellChangeTimes->{{3.698536286834301*^9, 3.698536290544794*^9}, {
+  3.698537641064683*^9, 3.6985376433626423`*^9}}],
+
+Cell["\<\
+    Although single real-time warehouse information can be easily reached \
+with the service provided by web agencies, there is still a big gap in \
+reaching the general picture of the warehouse open market status as a whole. \
+\
+\>", "Text",
+ CellChangeTimes->{{3.698537924832746*^9, 3.698538072532032*^9}, {
+  3.6985381222741823`*^9, 3.698538123943596*^9}}]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 },
@@ -214,13 +354,13 @@ CellTagsIndex->{
    CellTags->"SlideShowHeader"],
   Cell[6527, 163, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"],
-  Cell[7019, 183, 64, 1, 74, "SlideShowNavigationBar",
+  Cell[9955, 224, 64, 1, 74, "SlideShowNavigationBar",
    CellTags->"SlideShowHeader"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"SlideShowHeader", 7718, 209}
+ {"SlideShowHeader", 14744, 349}
  }
 *)
 (*NotebookFileOutline
@@ -245,15 +385,27 @@ Cell[6527, 163, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
 Cell[CellGroupData[{
 Cell[6616, 168, 100, 1, 63, "Subchapter"],
-Cell[6719, 171, 251, 6, 169, "Text"]
+Cell[6719, 171, 3187, 47, 967, "Text"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[7019, 183, 64, 1, 74, "SlideShowNavigationBar",
+Cell[9955, 224, 64, 1, 74, "SlideShowNavigationBar",
  CellTags->"SlideShowHeader"],
 Cell[CellGroupData[{
-Cell[7108, 188, 105, 1, 63, "Subchapter"],
-Cell[7216, 191, 83, 1, 55, "Text"]
+Cell[10044, 229, 105, 1, 63, "Subchapter"],
+Cell[CellGroupData[{
+Cell[10174, 234, 99, 1, 94, "Subsection"],
+Cell[10276, 237, 824, 12, 245, "Text"],
+Cell[CellGroupData[{
+Cell[11125, 253, 929, 23, 166, "Code"],
+Cell[12057, 278, 943, 23, 127, "Output"]
+}, {2}]],
+Cell[13012, 304, 738, 11, 207, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13787, 320, 154, 2, 94, "Subsection"],
+Cell[13944, 324, 369, 7, 131, "Text"]
+}, Open  ]]
 }, Open  ]]
 }, Open  ]]
 }
